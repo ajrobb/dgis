@@ -10,7 +10,7 @@
 defaultNameserver="1.1.1.1"
 
 # Default timezone
-timezone="Canada/Central"
+timezone="America/Los_Angeles"
 
 # Default root mount directory
 DESTINATION=/mnt/gentoo
@@ -134,7 +134,6 @@ function selectProfile() {
 		printf "\n"
 		printf "* Listing profiles... \n"
 		printf "Note: If you chose Gnome as your desktop environment, now just select a regular, non-systemd, desktop profile and later you will be reprompted to select one of the Dantrell Gnome profiles. \n"
-		printf "Note: For Budgie, it recommended to select default/linux/amd64/13.0/systemd as the profile. \n"
 		printf "\n"
 		eselect profile list
 		printf "\n"
@@ -533,13 +532,6 @@ for (( ; ; )); do
 	fi
 done
 
-# Setting CPU flags in /etc/portage/make.conf
-printf "* Setting CPU flags in /etc/portage/make.conf \n"
-cpuFlags=$(cpuinfo2cpuflags-x86)
-printf " \n" >> /etc/portage/make.conf
-printf "# Supported CPU flags \n" >> /etc/portage/make.conf
-printf "$cpuFlags \n" >> /etc/portage/make.conf
-
 # Updating world
 printf "\n"
 printf "* Updating world.. \n"
@@ -627,10 +619,6 @@ fi
 if [[ "$displayChoice" -le 3 ]]; then
 	flaggie sys-apps/busybox -static
 	checkThenInstall "sys-apps/busybox"
-	printf " \n" >> /etc/portage/make.conf
-	printf "# Video and input devices for Xorg \n" >> /etc/portage/make.conf
-	printf "VIDEO_CARDS=\"amndgpu fbdev vesa radeon radeonsi nouveau intel\" \n" >> /etc/portage/make.conf
-	printf "INPUT_DEVICES=\"keyboard mouse synaptics evdev\" \n" >> /etc/portage/make.conf
 	# shellcheck source=/dev/null
 	env-update && . /etc/profile
 fi
