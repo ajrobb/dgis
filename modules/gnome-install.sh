@@ -20,9 +20,9 @@ flaggie media-libs/mesa +gles2
 flaggie sys-apps/busybox -static
 flaggie media-plugins/alsa-plugins +pulseaudio
 flaggie x11-base/xorg-server +glamor
-flaggie x11-libs/libdrm +video_cards_amdgpu
+flaggie x11-libs/libdrm 
 flaggie gnome-base/gvfs +udisks
-flaggie net-print/cups -dbus
+flaggie net-print/cups dbus
 emerge --deselect sys-fs/udev
 echo -e "# required for GNOME\n>=media-plugins/grilo-plugins-0.2.13 upnp-av" >> /etc/portage/package.use/grilo-plugins
 echo -e "# required for GNOME\n>=www-servers/apache-2.2.31 apache2_mpms_prefork" >> /etc/portage/package.use/apache
