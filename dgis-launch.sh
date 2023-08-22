@@ -51,12 +51,11 @@ function stage3Download() {
 	printf "\n"
 	printf "Downloading the stage 3 tarball... \n"	
 
-	ARCH=amd64
-	MICROARCH=amd64
+	ARCH=arm64
 	SUFFIX=openrc
 	DIST="https://ftp-osl.osuosl.org/pub/gentoo/releases/${ARCH}/autobuilds"
 	SIGNING_KEY="0xBB572E0E2D182910"
-	STAGE3PATH="$(wget -q -O- "${DIST}/latest-stage3-${MICROARCH}-${SUFFIX}.txt" | tail -n 1 | cut -f 1 -d ' ')"
+	STAGE3PATH="$(wget -q -O- "${DIST}/latest-stage3-${ARCH}-${SUFFIX}.txt" | tail -n 1 | cut -f 1 -d ' ')"
 	STAGE3="$(basename ${STAGE3PATH})"
 	
 	#wget -q --show-progress "${DIST}/${STAGE3PATH}" "${DIST}/${STAGE3PATH}.CONTENTS.gz" "${DIST}/${STAGE3PATH}.DIGESTS.asc"
